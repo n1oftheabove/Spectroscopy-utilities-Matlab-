@@ -7,6 +7,9 @@
 % ('pulsew') remark: Window-function 'window_1.m' necessary. parameter
 % 'optionall' = 1, cutdelay and rdy2windowref is given for the whole spectrum
 % (incl the area before zero)
+%
+%
+% created by n1oftheabove, 2013 at Potsdam University. Use as you like.
 
 function [ fftcutfreq, fftcut, cutdelay, rdy2windowref ] = slofftanalyzer(delay, reflectivity, k, l, smoothrange, pulsew, optionall)
 cutdelay = delay(k:l);
