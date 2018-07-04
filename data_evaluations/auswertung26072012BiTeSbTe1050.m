@@ -1,19 +1,22 @@
+% created by n1oftheabove, 2013 at Potsdam University. Use as you like, crediting my github is appreciated
+
 %% %% BiTe (10Angstroem) / SbTe (50Angstroem) on GaAs
 %% Input Values
-%Fuer welche Wellenlaengen liegen Messungen vor?
+% Fuer welche Wellenlaengen liegen Messungen vor?
+
 wvl = [795];
 wvllist = {'795 nm'};
-%Records?
+% Records?
 records = 10000 ;
-%Messwerte pro Umlauf
+% Messwerte pro Umlauf
 timesteps = 90000;
-%Zeitueberlapp bei stagepos (in mm)
+% Zeitueberlapp bei stagepos (in mm)
 timezero = -18.140;
-%Daten gemessen bei stagepos (in mm)
+% Daten gemessen bei stagepos (in mm)
 stagepos = -18.64;
 timeshift = 2* (abs(stagepos) - abs(timezero)) * (1e9./physconst('lightspeed'));
 
-%Indexshift
+% Indexshift
 timeindexshift = -21;
 
 wvlsize = length(wvl);
@@ -54,7 +57,7 @@ end
 % Korrigieren der Messwerte um die background-Messungen
 cor = data - back;
 
-%'Umklappen' der Messwerte - spaetere Zeiten kommen an den Anfang
+% 'Umklappen' der Messwerte - spaetere Zeiten kommen an den Anfang
 
 % timeshifted = circshift(time,[timeindexshift 0]);
 % time2 = timeshifted(1:end-abs(timeindexshift),:);
@@ -67,13 +70,13 @@ cutrefmatrix = zeros(length(cor2_1),wvlsize);
 for i = 1:wvlsize
     [~,cutrefmatrix(:,i)]=timecutter(time,cor(:,i));
 end
-%doppelte Zeitwerte rauskicken
+% doppelte Zeitwerte rauskicken
 [time_1,ref_1 ] = aequidisttime(timecut,cutrefmatrix(:,1));
 refmatrix = zeros(length(ref_1),wvlsize);
 for i = 1:wvlsize
     [~,refmatrix(:,i)]=aequidisttime(timecut,cutrefmatrix(:,i));
 end
-%ref Achse eichen 1:11260
+% ref Achse eichen 1:11260
 zeroedrefmatrix = zeros(length(ref_1),wvlsize);
 for i = 1:wvlsize
     zeroedrefmatrix(:,i) = refmatrix(:,i)-mean(refmatrix(1:11260,i));
@@ -146,9 +149,9 @@ h(:,i)=plot(time_fixed,smoothedrefmatrix(:,i),'color',cc(i,:),'Markersize',3);
 set(h(:,i), 'Color', cc(i,:))
 end
 hold off
-%legend(h(1,:),wvllist)
+% legend(h(1,:),wvllist)
 grid
-%title({'[BiTe (10angstrom)/SbTe (50angstrom)] on GaAs','10000 records'})
+% title({'[BiTe (10angstrom)/SbTe (50angstrom)] on GaAs','10000 records'})
 xlabel('Delay \tau in ps','FontSize',11)
 ylabel('\DeltaR/R_0','FontSize',11)
 print(fig, '26072012BiTeSbTe(10_50)10000', '-depsc');
@@ -170,9 +173,9 @@ h(:,i)=plot(sloxxmatrix(:,i),sloyymatrix(:,i),'color',cc(i,:));
 set(h(:,i), 'Color', cc(i,:))
 end
 hold off
-%legend(h(1,:),wvllist)
+% legend(h(1,:),wvllist)
 grid
-%title({'[BiTe (10angstrom)/SbTe (50angstrom)] on GaAs','Oscillations only 10000 records'})
+% title({'[BiTe (10angstrom)/SbTe (50angstrom)] on GaAs','Oscillations only 10000 records'})
 xlabel('Zeit in ps')
 ylabel('\DeltaR/R_0')
 print(fig, '26072012BiTeSbTe(10_50)10000slo', '-depsc');
@@ -192,7 +195,7 @@ set(gcf, 'PaperPositionMode','auto','PaperUnits','centimeter');
 set(gcf,'PaperSize',[diagramwidth diagramheight]);
 Ticksh1 = [-8e-4 -6e-4 -4e-4 -2e-4 0];
 Ticksh2 = [-6e-5 -4e-5 -2e-5 0 2e-5 4e-5];
-%Xticks=
+% Xticks=
 Achsenh1 = [-2 12 -8e-4 1e-4];
 Achsenh2 = [-2 12 -6e-5 6e-5];
 Labelsh2 = [-0.6 -0.4 -0.2 0 0.2 0.4];
@@ -216,7 +219,7 @@ h1=subplot(2,2,2);
 plot(time_fixed, smoothedrefmatrix(:,1),'.c','markersize',0.5);
 set(gca,'YTick',Ticksh1);
 set(gca,'XTickLabel',[]);
-%set(gca,'XTick',Xticks);
+% set(gca,'XTick',Xticks);
 set(gca,'FontSize',8,'fontname','Helvetica', 'XMinorTick','on','YMinorTick','on');
 axis(h1,Achsenh1);
 grid
@@ -289,6 +292,7 @@ set(hLine,'LineWidth',1.5);
 hold off
 grid
 print(fig7, '26072012BiTeSbTe(10_50)10000plotwithfit', '-depsc');
+
 %% FFT
 
 fig=figure(6);
