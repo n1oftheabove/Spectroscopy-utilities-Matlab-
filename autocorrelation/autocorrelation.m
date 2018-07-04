@@ -4,13 +4,13 @@
 axisfontsize = 11;
 %Messpunkte
 N = 90000;
-%Pulsl�nge in fs
+%Pulslaenge in fs
 pulselength = 120;
 axisfontsize = 15;
 
-% %Zeitberuelapp bei stagepos (in mm)
+% % Zeitueberlapp bei stagepos (in mm)
 % timezero = -18.17;
-% %Daten gemessen bei stagepos (in mm)
+% % Daten gemessen bei stagepos (in mm)
 % stagepos = -19.82;
 
 % timeshift = 2* (abs(stagepos) - abs(timezero)) * 3.33;
