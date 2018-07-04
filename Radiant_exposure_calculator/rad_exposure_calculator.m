@@ -1,3 +1,7 @@
+% see readme.md for explanation
+%
+% created by n1oftheabove, 2013 at Potsdam University. Use as you like
+
 %Power of beams measured at sample in mW
 Pspump = 800.0;
 Psprobe = 1.874;
