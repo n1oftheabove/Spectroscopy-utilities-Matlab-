@@ -1,13 +1,13 @@
 %% %% BiTe (10Angstroem) / SbTe (50Angstroem) on GaAs
 %% Input Values
-%F�r welche Wellenl�ngen liegen Messungen vor?
+%Fuer welche Wellenlaengen liegen Messungen vor?
 wvl = [795];
 wvllist = {'795 nm'};
 %Records?
 records = 10000 ;
 %Messwerte pro Umlauf
 timesteps = 90000;
-%Zeit�berlapp bei stagepos (in mm)
+%Zeitueberlapp bei stagepos (in mm)
 timezero = -18.140;
 %Daten gemessen bei stagepos (in mm)
 stagepos = -18.64;
@@ -35,8 +35,8 @@ data = zeros(timesteps,wvlsize);
 temp = zeros(timesteps,2);
 time = zeros(timesteps,1);
 
-%% Einlesen und Variablendefinieren der Messmatrizen f�r background
-%echte Messung
+%% Einlesen und Variablendefinieren der Messmatrizen fuer background
+% echte Messung
 
  for i=1:wvlsize
      temp = load(databack_name{i},'-ascii');
@@ -51,10 +51,10 @@ for i=1:wvlsize
     data(:,i) = temp(:,2);
 end
 
-%Korrigieren der Messwerte um die background-Messungen
+% Korrigieren der Messwerte um die background-Messungen
 cor = data - back;
 
-%'Umklappen' der Messwerte - sp�tere Zeiten kommen an den Anfang
+%'Umklappen' der Messwerte - spaetere Zeiten kommen an den Anfang
 
 % timeshifted = circshift(time,[timeindexshift 0]);
 % time2 = timeshifted(1:end-abs(timeindexshift),:);
@@ -78,9 +78,9 @@ zeroedrefmatrix = zeros(length(ref_1),wvlsize);
 for i = 1:wvlsize
     zeroedrefmatrix(:,i) = refmatrix(:,i)-mean(refmatrix(1:11260,i));
 end
-%t-Achse eichen
+% t-Achse eichen
 time_fixed = time_1 + timeshift;
-%plotten:
+% plotten:
 cc = flipud(autumn(wvlsize));
 figure(2)
 hold on
@@ -92,7 +92,7 @@ end
 hold off
 legend(h(1,:),wvllist)
 grid
-%smoothen mit Pulslänge
+% smoothen mit Pulslänge
 delta = abs(max(time_fixed)-min(time_fixed))./length(time_fixed);
 smoothedrefmatrix = zeros(length(zeroedrefmatrix(:,1)),wvlsize);
 for i = 1:wvlsize;
