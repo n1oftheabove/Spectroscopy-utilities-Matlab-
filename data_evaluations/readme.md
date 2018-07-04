@@ -5,3 +5,4 @@ It makes use of
 * ***window_1.m***
 * ***timecutter.m***
 * ***slowfftanalyzer.m***
+* ***aequidisttime.m***
