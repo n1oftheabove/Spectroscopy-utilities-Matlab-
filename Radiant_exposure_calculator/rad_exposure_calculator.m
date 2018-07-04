@@ -1,8 +1,8 @@
-%Power of beams measured at Sample in mW
+%Power of beams measured at sample in mW
 Pspump = 800.0;
 Psprobe = 1.874;
 
-%%at MT-Power in mW
+%%with laser power in mW
 Pout = 1780;
  
 %Angle of incidence (angle to perpendicular relative to surface)
